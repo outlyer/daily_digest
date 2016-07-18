@@ -26,13 +26,13 @@ task :deliver do
   kindlegen = DailyDigest::Kindlegen.new
   kindlegen.render(articles, tempfile)
 
-  puts "---> Converting rendered pages to Mobi with Kindlegen"
-  kindlegen.convert(tempfile, basename + ".mobi")
+  #puts "---> Converting rendered pages to Mobi with Kindlegen"
+  #kindlegen.convert(tempfile, basename + ".mobi")
 
-  File.delete(tempfile)
+  #File.delete(tempfile)
 
-  mobi = basename + ".mobi"
-  puts "Generated #{mobi} (#{File.size(mobi)} bytes)"
+  #mobi = basename + ".mobi"
+  #puts "Generated #{mobi} (#{File.size(mobi)} bytes)"
 
   if ENV['KINDLE_MAILTO']
     puts "---> Sending #{mobi} to Kindle Personal Document"
