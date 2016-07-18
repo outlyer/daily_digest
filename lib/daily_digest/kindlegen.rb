@@ -32,6 +32,7 @@ module DailyDigest
           <div style="text-align:right"><% if article.author %><%=h article.author %> | <% end %><a href="<%=h article.url %>"><%=h article.domain %></a></div>
           <hr>
           <% if article.content %><%= article.rendered_content %><% end %>
+          <mbp:pagebreak />
           <% end %>
         </body>
         </html>
