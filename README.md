@@ -8,11 +8,11 @@ Generates Daily Digest from Pocket
 
 ## Prerequisite
 
-* Ruby 1.9 or later
-* Bundler
-* [calibre](http://calibre-ebook.com/) and `ebook-convert` CLI
+* [Ruby](https://www.ruby-lang.org) >= 2.x
+* [Bundler](http://bundler.io) >= 1.x
 * [Readability Parser API Key](http://www.readability.com/developers/api/parser)
 * [Pocket API Key and authorized token](http://getpocket.com/developer/docs/authentication)
+* [Kindlegen](https://www.amazon.com/gp/feature.html?docId=1000765211)
 
 ## Workflow
 
@@ -20,7 +20,8 @@ Generates Daily Digest from Pocket
 
 * Fetch unread items from [Pocket](http://getpocket.com)
 * Parse content with [Readbility](http://www.readability.com)
-* Create MOBI with Calibre ebook-convert
+* Create table of contents and `.opf` file
+* Create mobi file with Kindlegen
 
 Depending on your configuration, `daily_digest` will deliver the generated MOBI file to your destination in either:
 
@@ -30,6 +31,8 @@ Depending on your configuration, `daily_digest` will deliver the generated MOBI 
 You can let IFTTT watch `/Kindle` subfolder to send to your Kindle personal document free email address.
 
 ## How To
+
+(On Mac, you'll need to configure `bundle` to use `/usr/local/bin` with: `bundle config --global system_bindir /usr/local/bin`)
 
 ```
 bundle install
@@ -47,7 +50,7 @@ POCKET_ACCESS_TOKEN=a2aa5caa-c000-6ecb-b589-f7daea
 READABILITY_PARSER_KEY=2caeae6676796adada6967a5cddcd6a2292
 ```
 
-You have to manually authenticate against [Pocket OAuth endpoint](http://getpocket.com/developer/docs/authentication) to get the tokens. Sorry.
+You have to manually authenticate against [Pocket OAuth endpoint](http://getpocket.com/developer/docs/authentication) to get the tokens. I used [Pocket-CLI](https://github.com/rakanalh/pocket-cli) but you can use `curl` if you want to avoid the dependency. 
 
 If you want to directly send email to your Kindle Personal Document, you'll need the following environment variables as well:
 
@@ -59,9 +62,14 @@ SMTP_USERNAME=you@example.com
 SMTP_PASSWORD=43829f4cchRRY8
 ```
 
+## Changes from original/upstream project (miyagawa/daily_digest)[https://github.com/miyagawa/daily_digest]
+
+* Removed dependency on Calibre
+* Added generated table of contents, cover image, `opf` "manifest"
+
 ## Copyright
 
-Tatsuhiko Miyagawa
+Tatsuhiko Miyagawa, Aubin Paul
 
 ## License
 
