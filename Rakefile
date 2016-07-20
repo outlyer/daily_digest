@@ -19,8 +19,18 @@ task :deliver do
     reader.get(item.url)
   }.select(&:valid?)
 
-  basename = "dailydigest-#{Time.now.strftime('%Y%m%d%H%M%S')}"
+  basename = "dailydigest-#{Time.now.strftime('%Y%m%d%H%M')}"
   tempfile = basename + ".html"
+  opffile = basename + ".opf"
+  tocfile = basename + "toc.html"
+
+  puts "---> Generating TOC"
+  tocwrite = DailyDigest::TOCWrite.new
+  tocwrite.render(articles, tocfile)
+
+  puts "---> Generating OPF Index file"
+  opfwrite = DailyDigest::OPFWrite.new
+  opfwrite.render(tempfile,opffile)
 
   puts "---> Rendering pages in HTML"
   kindlegen = DailyDigest::Kindlegen.new
