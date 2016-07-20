@@ -45,7 +45,7 @@ module DailyDigest
       cache = cache_path(url)
       system 'wget', '-nc', url.to_s, '-O', cache
       cache.sub(/\.[a-zA-Z]+$/, '_r.jpg').tap do |dest|
-        system 'convert', '-quality', '60', '-resize', '768x>', cache, dest
+        system 'convert', '-quality', '60', '-colorspace','Gray','-resize', '768x>', cache, dest
       end
     end
 

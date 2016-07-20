@@ -21,7 +21,8 @@ module DailyDigest
       <<-EOF.gsub /^\s+/, ''
         <html>
         <head>
-        <meta http-requiv="Content-Type" content="text/html;charset=utf-8">
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8"/>
         <meta name="Author" content="daily_digest">
         <title>Daily Digest <%= Time.now.strftime('%Y/%m/%d') %></title>
         </head>
@@ -29,6 +30,7 @@ module DailyDigest
           <% articles.each.with_index(1) do |article, index| %>
              <div id="chapter<%= '%02i' %index%>"></div>
           <h2 class="chapter"><%=x article.title %></h2>
+          <img src="<%h article.leadimage %>">
           <div style="text-align:right"><% if article.author %><%=h article.author %> | <% end %><a href="<%=h article.url %>"><%=h article.domain %></a></div>
           <hr>
           <% if article.content %><%= article.rendered_content %><% end %>
@@ -40,7 +42,7 @@ module DailyDigest
     end
 
     def convert(html, mobi)
-      system "ebook-convert", html, mobi, "--mobi-file-type", "old"
+      system "kindlegen",'-donotaddsource',html
     end
   end
 end

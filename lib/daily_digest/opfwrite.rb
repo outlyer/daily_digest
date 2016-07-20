@@ -33,29 +33,21 @@ module DailyDigest
     </dc-metadata>
     <x-metadata>
       <output encoding="utf-8" content-type="text/x-oeb1-document"></output> 
+      <EmbeddedCover>pocket-logo.jpg</EmbeddedCover>
     </x-metadata>
 </metadata>
 
-<manifest>  /*  this is a list of the files included in the ebook */
-   /* there are two html files here, they are in the ebook in the order shown
-      by the item numbers. OatMealFudgeTOC.html comes before OatMealFudge.html
-      They could have easily been combined into one html file */
-   <item id="item2" media-type="text/x-oeb1-document" href="OatMealFudge.html"></item>
-   <item id="item1" media-type="text/x-oeb1-document" href="OatMealFudgeTOC.html"></item> 
-   <item id="My_Table_of_Contents" media-type="application/x-dtbncx+xml" href="OatMealFudge.ncx"/>
-   <item id="bookcover" media-type="image/jpeg" href="ScoutCover.jpg"></item>
+<manifest>  
+<item id="item2" media-type="text/x-oeb1-document" href="dailydigest-#{Time.now.strftime('%Y%m%d%H%M')}.html"></item>
+<item id="item1" media-type="text/x-oeb1-document" href="dailydigest-#{Time.now.strftime('%Y%m%d%H%M')}toc.html"></item> 
+<item id="bookcover" media-type="image/jpeg" href="pocket-logo.jpg"></item>
 </manifest>
-
 <spine toc="My_Table_of_Contents" pageList>
-  <itemref idref="item1"/>
+<itemref idref="item1"/>
 </spine>
-
-<tours>
-</tours>
-
 <guide>
-  <reference type="toc" title="Table of Contents" href="OatMealFudgeTOC.html#toc"></reference>
-  <reference type="text" title="start" href="OatMealFudge.html#start"></reference>
+  <reference type="toc" title="Table of Contents" href="dailydigest-#{Time.now.strftime('%Y%m%d%H%M')}toc.html"></reference>
+  <reference type="text" title="start" href="dailydigest-#{Time.now.strftime('%Y%m%d%H%M')}.html#chapter01"></reference>
 </guide>
 
 </package>

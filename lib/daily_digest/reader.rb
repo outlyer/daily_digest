@@ -12,6 +12,7 @@ module DailyDigest
 
     def endpoint(url)
       query = URI.encode_www_form("url" => url, "token" => token)
+      ##puts(query)
       URI.parse("https://www.readability.com/api/content/v1/parser?#{query}")
     end
 
@@ -36,6 +37,10 @@ module DailyDigest
 
       def domain
         @data['domain']
+      end
+
+      def leadimage
+        @data['lead_image_url']
       end
 
       def url
