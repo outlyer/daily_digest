@@ -30,7 +30,6 @@ module DailyDigest
           <% articles.each.with_index(1) do |article, index| %>
              <div id="chapter<%= '%02i' %index%>"></div>
           <h2 class="chapter"><%=x article.title %></h2>
-          <img src="<%h article.leadimage %>">
           <div style="text-align:right"><% if article.author %><%=h article.author %> | <% end %><a href="<%=h article.url %>"><%=h article.domain %></a></div>
           <hr>
           <% if article.content %><%= article.rendered_content %><% end %>
@@ -42,7 +41,7 @@ module DailyDigest
     end
 
     def convert(html, mobi)
-      system "kindlegen",'-donotaddsource',html
+      system "kindlegen",'-dont_append_source',html
     end
   end
 end

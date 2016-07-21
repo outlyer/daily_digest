@@ -23,6 +23,7 @@ task :deliver do
   tempfile = basename + ".html"
   opffile = basename + ".opf"
   tocfile = basename + "toc.html"
+  mobi = basename + ".mobi"
 
   puts "---> Generating TOC"
   tocwrite = DailyDigest::TOCWrite.new
@@ -36,13 +37,15 @@ task :deliver do
   kindlegen = DailyDigest::Kindlegen.new
   kindlegen.render(articles, tempfile)
 
-  #puts "---> Converting rendered pages to Mobi with Kindlegen"
-  #kindlegen.convert(tempfile, basename + ".mobi")
+  puts "---> Converting rendered pages to Mobi with Kindlegen"
+  kindlegen.convert(opffile, mobi)
 
-  #File.delete(tempfile)
+  puts "---> Cleaning up temporary files"
+ #File.delete(tempfile)
+ #File.delete(tocfile)
+ #File.delete(opffile)
 
-  #mobi = basename + ".mobi"
-  #puts "Generated #{mobi} (#{File.size(mobi)} bytes)"
+  puts "Generated #{mobi} (#{File.size(mobi)} bytes)"
 
   if ENV['KINDLE_MAILTO']
     puts "---> Sending #{mobi} to Kindle Personal Document"
