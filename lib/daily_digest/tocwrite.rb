@@ -40,9 +40,5 @@ module DailyDigest
         </html>
       EOF
     end
-
-    def convert(html, mobi)
-      system "ebook-convert", html, mobi, "--mobi-file-type", "old"
-    end
   end
 end

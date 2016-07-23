@@ -41,9 +41,9 @@ task :deliver do
   kindlegen.convert(opffile, mobi)
 
   puts "---> Cleaning up temporary files"
- #File.delete(tempfile)
- #File.delete(tocfile)
- #File.delete(opffile)
+  File.delete(tempfile)
+  File.delete(tocfile)
+  File.delete(opffile)
 
   puts "Generated #{mobi} (#{File.size(mobi)} bytes)"
 
