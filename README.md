@@ -4,7 +4,7 @@ Generates Daily Digest from Pocket
 
 ## Screenshot
 
-![](http://dl.dropbox.com/u/135035/Screenshots/l8fvefgdfrt7.png)
+![daily_digest_sample](https://cloud.githubusercontent.com/assets/1550429/17079840/347a2d6a-50ea-11e6-85f5-6d177daa707e.jpg)
 
 ## Prerequisite
 
