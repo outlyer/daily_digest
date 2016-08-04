@@ -63,6 +63,8 @@ SMTP_USERNAME=you@example.com
 SMTP_PASSWORD=43829f4cchRRY8
 ```
 
+If you want to use Gmail to send the mail, you'll probably need an App Password which you can get from [Google Security](https://security.google.com/settings/security/apppasswords)
+
 ## Changes from original/upstream project [miyagawa/daily_digest](https://github.com/miyagawa/daily_digest)
 
 * Removed dependency on Calibre
