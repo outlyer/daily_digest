@@ -4,7 +4,7 @@ Generates Daily Digest from Pocket
 
 ## Screenshot
 
-![](http://dl.dropbox.com/u/135035/Screenshots/l8fvefgdfrt7.png)
+![daily_digest_sample](https://cloud.githubusercontent.com/assets/1550429/17079840/347a2d6a-50ea-11e6-85f5-6d177daa707e.jpg)
 
 ## Prerequisite
 
@@ -62,6 +62,8 @@ SMTP_SERVER=smtp.example.com:587
 SMTP_USERNAME=you@example.com
 SMTP_PASSWORD=43829f4cchRRY8
 ```
+
+If you want to use Gmail to send the mail, you'll probably need an App Password which you can get from [Google Security](https://security.google.com/settings/security/apppasswords)
 
 ## Changes from original/upstream project [miyagawa/daily_digest](https://github.com/miyagawa/daily_digest)
 
