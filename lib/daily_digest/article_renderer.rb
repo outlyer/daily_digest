@@ -16,6 +16,7 @@ module DailyDigest
           end
         end
     end
+  end
 
     def render(articles)
       @queue = Queue.new
