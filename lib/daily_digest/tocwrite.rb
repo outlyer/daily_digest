@@ -28,11 +28,11 @@ module DailyDigest
         <body>
 <div>
 <a id="toc"></a>
- <center><h1><b>Table of Contents</b></h1></center>
+ <h1><b>Table of Contents</b></h1>
  <br />
 <div>
  <% articles.each.with_index(1) do |article, index| %>
-  <p><a href="dailydigest-#{Time.now.strftime('%Y%m%d%H%M')}.html#chapter<%= '%02i' %index%>"><%=x article.title %></a><p>
+  <p><a href="dailydigest-#{Time.now.strftime('%Y%m%d%H%M')}.html#chapter<%= '%02i' %index%>"><%=x article.title %></a></p>
 </div>
           <% end %>
           <mbp:pagebreak />

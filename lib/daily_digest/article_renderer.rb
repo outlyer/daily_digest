@@ -19,6 +19,8 @@ module DailyDigest
             break if @queue.empty?
             article = @queue.pop
             puts "---> Rendering #{article.title}"
+            article.content.gsub!(/.jpg.*?\"/,'.jpg"')
+            article.content.gsub!(/.png.*?\"/,'.png"')
             if article.content
               article.rendered_content = render_article(article.content)
             end
@@ -44,9 +46,10 @@ module DailyDigest
     def expand_image(url)
       cache = cache_path(url)
       system 'wget', '-q','-nc', url.to_s, '-O', cache
-      cache.sub(/\.[a-zA-Z]+$/, '_r.jpg').tap do |dest|
-        system 'convert', '-quiet','-quality', '60', '-colorspace','Gray','-resize', '768x>', cache, dest
-      end
+      # puts("#{url.to_s} -> #{cache}")
+      #cache.sub(/\.[a-zA-Z]+$/, '_r.jpg').tap do |dest|
+      #  system 'convert', '-quiet','-quality', '60', '-colorspace','Gray','-resize', '768x>', cache, dest
+      #end
     end
 
     def cache_path(url)
