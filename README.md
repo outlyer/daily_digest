@@ -1,4 +1,4 @@
-# daily_digest
+# Daily Digest (for Kindle)
 
 Generates Daily Digest from Pocket
 
@@ -13,7 +13,6 @@ Generates Daily Digest from Pocket
 * [Readability Parser API Key](http://www.readability.com/developers/api/parser)
 * [Pocket API Key and authorized token](http://getpocket.com/developer/docs/authentication)
 * [Kindlegen](https://www.amazon.com/gp/feature.html?docId=1000765211)
-* [ImageMagick](https://www.imagemagick.org/script/index.php)
 
 ## Workflow
 
@@ -26,7 +25,7 @@ Generates Daily Digest from Pocket
 
 Depending on your configuration, `daily_digest` will deliver the generated MOBI file to your destination in either:
 
-* Copy the mobi to `~/Dropbox/Public/Kindle` for [IFTTT](http://ifttt.com) automation if the folder exists
+* Copy the mobi to an arbitrary folder called `DESTDIR` in your `.env` file for further processing
 * Send the mobi file as an email attachment if SMTP server authentication is configured (see below)
 
 You can let IFTTT watch `/Kindle` subfolder to send to your Kindle personal document free email address.
@@ -67,7 +66,7 @@ If you want to use Gmail to send the mail, you'll probably need an App Password 
 
 ## Changes from original/upstream project [miyagawa/daily_digest](https://github.com/miyagawa/daily_digest)
 
-* Removed dependency on Calibre
+* Removed dependency on Calibre and ImageMagick
 * Added generated table of contents, cover image, `opf` "manifest"
 * Added note about dependency on ImageMagick (also in upstream, but not mentioned)
 

@@ -53,9 +53,9 @@ task :deliver do
     delivery.deliver(mobi)
   end
 
-  outbox = "#{ENV['HOME']}/Dropbox/Public/Kindle"
+  outbox = ENV['DESTDIR']
   if File.exists?(outbox)
-    puts "---> Publishing #{mobi} to your Dropbox"
+    puts "---> Moving #{mobi} to your destination directory"
     FileUtils.move(mobi, outbox)
   end
 end
