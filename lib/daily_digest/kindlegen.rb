@@ -41,7 +41,7 @@ module DailyDigest
     end
 
     def convert(html, mobi)
-      system "kindlegen",'-dont_append_source',html
+      system "kindlegen",'-dont_append_source',html, :out => :close
     end
   end
 end

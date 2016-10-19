@@ -18,7 +18,7 @@ module DailyDigest
           loop do
             break if @queue.empty?
             article = @queue.pop
-            puts "---> Rendering #{article.title}"
+            print "     Rendering #{article.title}" + "                                                            " + "\r"
             article.content.gsub!(/.jpg.*?\"/,'.jpg"')
             article.content.gsub!(/.png.*?\"/,'.png"')
             if article.content
