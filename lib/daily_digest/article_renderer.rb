@@ -1,7 +1,20 @@
 module DailyDigest
+
+  require 'open-uri'
+
   class ArticleRenderer
     def initialize(number = 10)
       @number = number
+    end
+
+    def httpfetch(url,filename)
+      unless File.file?(filename) then
+        File.open(filename, "wb") do |saved_file|
+          # the following "open" is provided by open-uri
+          open(url, "rb") do |read_file|
+            saved_file.write(read_file.read)
+          end
+        end
     end
 
     def render(articles)
@@ -45,11 +58,16 @@ module DailyDigest
 
     def expand_image(url)
       cache = cache_path(url)
-      system 'wget', '-q','-nc', url.to_s, '-O', cache
-      # puts("#{url.to_s} -> #{cache}")
-      #cache.sub(/\.[a-zA-Z]+$/, '_r.jpg').tap do |dest|
-      #  system 'convert', '-quiet','-quality', '60', '-colorspace','Gray','-resize', '768x>', cache, dest
-      #end
+      httpfetch(url.to_s,cache)
+      cache.sub(/\.[a-zA-Z]+$/, '_r.jpg').tap do |dest|
+        system 'convert', '-quiet','-quality', '60', '-colorspace','Gray','-resize', '1072x>', cache, dest
+      end
+      cache.sub(/\.[a-zA-Z]+$/, '_r.png').tap do |dest|
+        system 'convert', '-quiet','-quality', '60', '-colorspace','Gray','-resize', '1072x>', cache, dest
+      end
+      cache.sub(/\.[a-zA-Z]+$/, '_r.gif').tap do |dest|
+        system 'convert', '-quiet','-quality', '60', '-colorspace','Gray','-resize', '1072x>', cache, dest
+      end
     end
 
     def cache_path(url)
