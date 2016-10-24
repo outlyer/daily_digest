@@ -13,6 +13,7 @@ Generates Daily Digest from Pocket
 * [Readability Parser API Key](http://www.readability.com/developers/api/parser)
 * [Pocket API Key and authorized token](http://getpocket.com/developer/docs/authentication)
 * [Kindlegen](https://www.amazon.com/gp/feature.html?docId=1000765211)
+* [ImageMagick](https://www.imagemagick.org/script/index.php) (Build with [librsvg](http://live.gnome.org/LibRsvg) for SVG support)
 
 ## Workflow
 
