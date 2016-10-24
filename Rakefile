@@ -15,7 +15,7 @@ task :deliver do
   puts "📰  Parsing items with Readability"
   reader = DailyDigest::Reader.new(ENV['READABILITY_PARSER_KEY'])
   articles = items.map { |item|
-    print "     Parsing #{item.title}" + "                                                            " + "\r"
+    print "     Parsing #{item.title}" + "                                                 " + "\r"
     reader.get(item.url)
   }.select(&:valid?)
   print "\n"
@@ -34,6 +34,7 @@ task :deliver do
   opfwrite = DailyDigest::OPFWrite.new
   opfwrite.render(tempfile,opffile)
 
+  print "\n"
   puts "📚  Rendering pages in HTML"
   kindlegen = DailyDigest::Kindlegen.new
   kindlegen.render(articles, tempfile)
@@ -41,10 +42,13 @@ task :deliver do
   puts "📘  Converting rendered pages to Mobi with Kindlegen"
   kindlegen.convert(opffile, mobi)
 
-  puts "🗑  Cleaning up temporary files"
-  #File.delete(tempfile)
-  File.delete(tocfile)
-  File.delete(opffile)
+
+  if ENV['CLEANUP']
+    puts "🗑  Cleaning up temporary files"
+    File.delete(tempfile)
+    File.delete(tocfile)
+    File.delete(opffile)
+  end
 
   puts "📘  Generated #{mobi} (#{File.size(mobi)} bytes)"
 

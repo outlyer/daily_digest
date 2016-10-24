@@ -32,14 +32,13 @@ module DailyDigest
           loop do
             break if @queue.empty?
             article = @queue.pop
-            print "     Rendering #{article.title}" + "                                                            " + "\r"
+            print "     Rendering #{article.title}" + "                                                 " + "\r"
             article.content.gsub!(/<img src="\/\//,'<img src="http:\/\/')
             article.content.gsub!(/.jpg.*?\"/,'.jpg"')
             article.content.gsub!(/.png.*?\"/,'.png"')
             if article.content
               article.rendered_content = render_article(article.content)
             end
-            print "\n"
           end
         end
       end
@@ -62,7 +61,6 @@ module DailyDigest
     def expand_image(url)
       cache = cache_path(url)
       httpfetch(url.to_s,cache)
-      puts url.to_s
      cache.sub(/\.[a-zA-Z]+$/, '_r.jpg').tap do |dest|
         imgsrc =  cache
         imgsrc.gsub!(/.gif/,'.gif[0]') # Make sure we don't expand the multiple frames of a gif, just grab the first frame
