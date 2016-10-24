@@ -41,6 +41,19 @@ module DailyDigest
 <item id="item2" media-type="text/x-oeb1-document" href="dailydigest-#{Time.now.strftime('%Y%m%d%H%M')}.html"></item>
 <item id="item1" media-type="text/x-oeb1-document" href="dailydigest-#{Time.now.strftime('%Y%m%d%H%M')}toc.html"></item> 
 <item id="bookcover" media-type="image/jpeg" href="pocket-logo.jpg"></item>
+ <item id="css" href="styles/style.css" media-type="text/css" />
+    <item id="font_0" href="fonts/Lato-Light.ttf" media-type="application/x-font-ttf" />
+
+    <item id="font_1" href="fonts/Lato-Regular.ttf" media-type="application/x-font-ttf" />
+
+    <item id="font_2" href="fonts/Merriweather-Bold.ttf" media-type="application/x-font-ttf" />
+
+    <item id="font_3" href="fonts/Merriweather-BoldItalic.ttf" media-type="application/x-font-ttf" />
+
+    <item id="font_4" href="fonts/Merriweather-Italic.ttf" media-type="application/x-font-ttf" />
+
+    <item id="font_5" href="fonts/Merriweather-Regular.ttf" media-type="application/x-font-ttf" />
+
 </manifest>
 <spine toc="My_Table_of_Contents" pageList>
 <itemref idref="item1"/>

@@ -62,8 +62,11 @@ module DailyDigest
     def expand_image(url)
       cache = cache_path(url)
       httpfetch(url.to_s,cache)
-      cache.sub(/\.[a-zA-Z]+$/, '_r.jpg').tap do |dest|
-        system 'convert', '-quiet','-quality', '60', '-colorspace','Gray','-resize', '1072x>', cache, dest
+      puts url.to_s
+     cache.sub(/\.[a-zA-Z]+$/, '_r.jpg').tap do |dest|
+        imgsrc =  cache
+        imgsrc.gsub!(/.gif/,'.gif[0]') # Make sure we don't expand the multiple frames of a gif, just grab the first frame
+        system 'convert', '-quiet','-quality', '60', '-colorspace','Gray','-resize', '1072x>', imgsrc, dest
       end
     end
 

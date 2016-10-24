@@ -24,17 +24,21 @@ module DailyDigest
         <meta http-requiv="Content-Type" content="text/html;charset=utf-8">
         <meta name="Author" content="daily_digest">
         <title>Table of Contents <%= Time.now.strftime('%Y/%m/%d') %></title>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" type="text/css" href="styles/style.css" />
         </head>
         <body>
 <div>
-<a id="toc"></a>
- <h1><b>Table of Contents</b></h1>
+<nav id="toc" epub:type="toc">
+ <h1 class="chapter-title">Contents</h1>
  <br />
-<div>
+<ol>
  <% articles.each.with_index(1) do |article, index| %>
-  <p><a href="dailydigest-#{Time.now.strftime('%Y%m%d%H%M')}.html#chapter<%= '%02i' %index%>"><%=x article.title %></a></p>
-</div>
+  <li class="toc-1"><a href="dailydigest-#{Time.now.strftime('%Y%m%d%H%M')}.html#chapter<%= '%02i' %index%>"><%=x article.title %></a></li>
+
           <% end %>
+          </ol>
+          </nav>
           <mbp:pagebreak />
         </body>
         </html>

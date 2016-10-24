@@ -23,6 +23,7 @@ module DailyDigest
         <head>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
         <meta charset="utf-8"/>
+        <link rel="stylesheet" type="text/css" href="styles/style.css" />
         <meta name="Author" content="daily_digest">
         <title>Daily Digest <%= Time.now.strftime('%Y/%m/%d') %></title>
         </head>
