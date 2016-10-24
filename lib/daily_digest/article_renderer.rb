@@ -33,11 +33,13 @@ module DailyDigest
             break if @queue.empty?
             article = @queue.pop
             print "     Rendering #{article.title}" + "                                                            " + "\r"
+            article.content.gsub!(/<img src="\/\//,'<img src="http:\/\/')
             article.content.gsub!(/.jpg.*?\"/,'.jpg"')
             article.content.gsub!(/.png.*?\"/,'.png"')
             if article.content
               article.rendered_content = render_article(article.content)
             end
+            print "\n"
           end
         end
       end
@@ -61,12 +63,6 @@ module DailyDigest
       cache = cache_path(url)
       httpfetch(url.to_s,cache)
       cache.sub(/\.[a-zA-Z]+$/, '_r.jpg').tap do |dest|
-        system 'convert', '-quiet','-quality', '60', '-colorspace','Gray','-resize', '1072x>', cache, dest
-      end
-      cache.sub(/\.[a-zA-Z]+$/, '_r.png').tap do |dest|
-        system 'convert', '-quiet','-quality', '60', '-colorspace','Gray','-resize', '1072x>', cache, dest
-      end
-      cache.sub(/\.[a-zA-Z]+$/, '_r.gif').tap do |dest|
         system 'convert', '-quiet','-quality', '60', '-colorspace','Gray','-resize', '1072x>', cache, dest
       end
     end

@@ -18,6 +18,7 @@ task :deliver do
     print "     Parsing #{item.title}" + "                                                            " + "\r"
     reader.get(item.url)
   }.select(&:valid?)
+  print "\n"
 
   basename = "dailydigest-#{Time.now.strftime('%Y%m%d%H%M')}"
   tempfile = basename + ".html"
@@ -45,7 +46,7 @@ task :deliver do
   File.delete(tocfile)
   File.delete(opffile)
 
-  puts "📘   Generated #{mobi} (#{File.size(mobi)} bytes)"
+  puts "📘  Generated #{mobi} (#{File.size(mobi)} bytes)"
 
   if ENV['KINDLE_MAILTO']
     puts "✉️    Sending #{mobi} to Kindle Personal Document"
@@ -54,8 +55,8 @@ task :deliver do
   end
 
   outbox = ENV['DESTDIR']
-  if File.exists?(outbox)
-    puts "🚚   Moving #{mobi} to your destination directory"
+  if ENV['DESTDIR'] and File.exists?(outbox)
+    puts "🚚  Moving #{mobi} to your destination directory"
     FileUtils.move(mobi, outbox)
   end
 end
