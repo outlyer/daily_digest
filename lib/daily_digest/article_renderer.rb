@@ -27,12 +27,17 @@ module DailyDigest
     end
 
     def workers
+      maxlength = 0
       (1..@number).to_a.map do |i|
         Thread.new do
           loop do
             break if @queue.empty?
             article = @queue.pop
-            print "     Rendering #{article.title}" + "                                                 " + "\r"
+            if article.title.length > maxlength
+              maxlength = article.title.length
+            end
+            padding = " " * (maxlength-16)
+            print "     Rendering #{article.title}" + padding + "\r"
             article.content.gsub!(/<img src="\/\//,'<img src="http:\/\/')
             article.content.gsub!(/.jpg.*?\"/,'.jpg"')
             article.content.gsub!(/.png.*?\"/,'.png"')

@@ -12,10 +12,15 @@ task :deliver do
   pocket = DailyDigest::Pocket.new(ENV['POCKET_ACCESS_TOKEN'], ENV['POCKET_CONSUMER_KEY'], ENV['POCKET_FAVORITES'])
   items = pocket.list
 
+  maxlength = 0
   puts "📰  Parsing items with Readability"
   reader = DailyDigest::Reader.new(ENV['READABILITY_PARSER_KEY'])
   articles = items.map { |item|
-    print "     Parsing #{item.title}" + "                                                 " + "\r"
+    if item.title.length > maxlength
+      maxlength = item.title.length
+    end
+    padding = " " * (maxlength-14)
+    print "     Parsing #{item.title}" + padding + "\r"
     reader.get(item.url)
   }.select(&:valid?)
   print "\n"

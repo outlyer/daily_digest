@@ -39,7 +39,7 @@ module DailyDigest
         @data['domain']
       end
 
-      def leadimage
+      def lead_image_url
         @data['lead_image_url']
       end
 

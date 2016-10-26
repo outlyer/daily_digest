@@ -28,14 +28,11 @@ module DailyDigest
         <link rel="stylesheet" type="text/css" href="styles/style.css" />
         </head>
         <body>
-<div>
 <nav id="toc" epub:type="toc">
  <h1 class="chapter-title">Contents</h1>
- <br />
 <ol>
  <% articles.each.with_index(1) do |article, index| %>
   <li class="toc-1"><a href="dailydigest-#{Time.now.strftime('%Y%m%d%H%M')}.html#chapter<%= '%02i' %index%>"><%=x article.title %></a></li>
-
           <% end %>
           </ol>
           </nav>

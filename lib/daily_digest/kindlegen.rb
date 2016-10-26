@@ -19,7 +19,9 @@ module DailyDigest
 
     def template
       <<-EOF.gsub /^\s+/, ''
-        <html>
+        <?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE html>
+        <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
         <head>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
         <meta charset="utf-8"/>
@@ -30,10 +32,11 @@ module DailyDigest
         <body>
           <% articles.each.with_index(1) do |article, index| %>
              <div id="chapter<%= '%02i' %index%>"></div>
-          <h2 class="chapter"><%=x article.title %></h2>
+          <h1 class="chapter-title"><%=x article.title %></h1>
           <div style="text-align:right"><% if article.author %><%=h article.author %> | <% end %><a href="<%=h article.url %>"><%=h article.domain %></a></div>
-          <hr>
+          <div class="chapter-content">
           <% if article.content %><%= article.rendered_content %><% end %>
+          </div>
           <mbp:pagebreak />
           <% end %>
         </body>
