@@ -19,9 +19,10 @@ module DailyDigest
 
     def template
       <<-EOF.gsub /^\s+/, ''
-        <html>
-        <head>
-        <meta http-requiv="Content-Type" content="text/html;charset=utf-8">
+        <?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" xml:lang="en" lang="en">
+<head>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
         <meta name="Author" content="daily_digest">
         <title>Table of Contents <%= Time.now.strftime('%Y/%m/%d') %></title>
         <meta charset="UTF-8" />

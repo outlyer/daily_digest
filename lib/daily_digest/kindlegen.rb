@@ -33,7 +33,7 @@ module DailyDigest
           <% articles.each.with_index(1) do |article, index| %>
              <div id="chapter<%= '%02i' %index%>"></div>
           <h1 class="chapter-title"><%=x article.title %></h1>
-          <div style="text-align:right"><% if article.author %><%=h article.author %> | <% end %><a href="<%=h article.url %>"><%=h article.domain %></a></div>
+          <div class="byline"><% if article.author %><%=h article.author %> | <% end %><a href="<%=h article.url %>"><%=h article.domain %></a></div>
           <div class="chapter-content">
           <% if article.content %><%= article.rendered_content %><% end %>
           </div>

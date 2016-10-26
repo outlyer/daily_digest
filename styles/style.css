@@ -253,8 +253,8 @@ h1.chapter-title {
 }
 
 .chapter-content p {
-  page-break-after:auto;
-  page-break-before:auto;
+  /* page-break-after:auto;
+  page-break-before:auto; */
   text-align:justify;
   text-indent:1.5em;
 }
@@ -420,4 +420,9 @@ h1.chapter-title {
 .chapter-content .endnote a {
   color: inherit;
   text-decoration: none;
+}
+
+.byline {
+  text-transform: uppercase;
+  font-size: .8em;
 }
