@@ -39,8 +39,8 @@ module DailyDigest
             padding = " " * (maxlength-16)
             print "     Rendering #{article.title}" + padding + "\r"
             article.content.gsub!(/<img src="\/\//,'<img src="http:\/\/')
-            article.content.gsub!(/.jpg.*?\"/,'.jpg"')
-            article.content.gsub!(/.png.*?\"/,'.png"')
+            article.content.gsub!(/.jpg%20.*?\"/,'.jpg"')
+            article.content.gsub!(/.png%20.*?\"/,'.png"')
             if article.content
               article.rendered_content = render_article(article.content)
             end
