@@ -1,6 +1,10 @@
-# Daily Digest (for Kindle)
+[![Code Climate](https://codeclimate.com/github/outlyer/daily_digest/badges/gpa.svg)](https://codeclimate.com/github/outlyer/daily_digest)
+[![Dependency Status](https://gemnasium.com/badges/github.com/outlyer/daily_digest.svg)](https://gemnasium.com/github.com/outlyer/daily_digest)
 
-Generates Daily Digest from Pocket
+
+# Kindle Daily Digest
+
+Generates Daily Digest from Pocket 
 
 ## Screenshot
 
