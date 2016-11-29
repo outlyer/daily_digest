@@ -10,7 +10,7 @@ Generates Daily Digest from Pocket
 
 * [Ruby](https://www.ruby-lang.org) >= 2.x
 * [Bundler](http://bundler.io) >= 1.x
-* [Readability Parser API Key](http://www.readability.com/developers/api/parser)
+* [Mercury Web Parser API Key](https://mercury.postlight.com/web-parser/)
 * [Pocket API Key and authorized token](http://getpocket.com/developer/docs/authentication)
 * [Kindlegen](https://www.amazon.com/gp/feature.html?docId=1000765211)
 * [ImageMagick](https://www.imagemagick.org/script/index.php) (Build with [librsvg](http://live.gnome.org/LibRsvg) for SVG support)
@@ -20,7 +20,7 @@ Generates Daily Digest from Pocket
 `rake deliver` will run the following tasks:
 
 * Fetch unread items from [Pocket](http://getpocket.com)
-* Parse content with [Readbility](http://www.readability.com)
+* Parse content with [Mercury](https://mercury.postlight.com/web-parser/)
 * Create table of contents and `.opf` file
 * Create mobi file with Kindlegen
 
@@ -48,7 +48,8 @@ You will have `.env` file that looks like:
 ```
 POCKET_CONSUMER_KEY=1234-abcd
 POCKET_ACCESS_TOKEN=a2aa5caa-c000-6ecb-b589-f7daea
-READABILITY_PARSER_KEY=2caeae6676796adada6967a5cddcd6a2292
+MERCURY_API_KEY=2caeae6676796adada6967a5cddcd6a2292
+CLEANUP=true
 ```
 
 You have to manually authenticate against [Pocket OAuth endpoint](http://getpocket.com/developer/docs/authentication) to get the tokens. I used [Pocket-CLI](https://github.com/rakanalh/pocket-cli) but you can use `curl` if you want to avoid the dependency. 
@@ -70,6 +71,7 @@ If you want to use Gmail to send the mail, you'll probably need an App Password 
 * Removed dependency on Calibre and ImageMagick
 * Added generated table of contents, cover image, `opf` "manifest"
 * Added note about dependency on ImageMagick (also in upstream, but not mentioned)
+* Removed dependency on Readability (defunct) and switched to Mercury Web Parser
 
 ## Copyright
 

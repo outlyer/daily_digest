@@ -1,23 +1,20 @@
 require 'uri'
+require 'mercury_parser'
 
 module DailyDigest
   class Reader
     include Client
+    include MercuryParser
 
     attr_reader :token
 
     def initialize(token)
       @token = token
-    end
-
-    def endpoint(url)
-      query = URI.encode_www_form("url" => url, "token" => token)
-      ##puts(query)
-      URI.parse("https://www.readability.com/api/content/v1/parser?#{query}")
+      MercuryParser.api_key = token
     end
 
     def get(url)
-      Article.new(request(endpoint(url)))
+      Article.new(MercuryParser.parse(url))
     end
 
     class Article

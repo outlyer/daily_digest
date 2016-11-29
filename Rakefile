@@ -13,8 +13,8 @@ task :deliver do
   items = pocket.list
 
   maxlength = 0
-  puts "📰  Parsing items with Readability"
-  reader = DailyDigest::Reader.new(ENV['READABILITY_PARSER_KEY'])
+  puts "📰  Parsing items with Mercury Web Parser"
+  reader = DailyDigest::Reader.new(ENV['MERCURY_API_KEY'])
   articles = items.map { |item|
     if item.title.length > maxlength
       maxlength = item.title.length
