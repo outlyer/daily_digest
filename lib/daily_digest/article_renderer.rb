@@ -69,7 +69,7 @@ module DailyDigest
      cache.sub(/\.[a-zA-Z]+$/, '_r.jpg').tap do |dest|
         imgsrc =  cache
         imgsrc.gsub!(/.gif/,'.gif[0]') # Make sure we don't expand the multiple frames of a gif, just grab the first frame
-        system 'convert', '-quiet','-quality', '60', '-colorspace','Gray','-resize', '1072x>', imgsrc, dest
+        system 'convert', '-quiet','-quality', '60', '-colorspace','Gray','-auto-level','-resize', '1072x>', imgsrc, dest
       end
     end
 

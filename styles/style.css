@@ -436,3 +436,8 @@ h1.chapter-title {
   font-size: .8em;
   margin-bottom: 1em;
 }
+
+/* Site Specific Hacks for edge cases not handled well by the web parser */
+
+/* Eurogamer Affiliate Links */
+a.promotion { display: none; }
