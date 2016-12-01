@@ -8,7 +8,8 @@ Generates Daily Digest from Pocket
 
 ## Screenshot
 
-![daily_digest_sample](https://cloud.githubusercontent.com/assets/1550429/17079840/347a2d6a-50ea-11e6-85f5-6d177daa707e.jpg)
+![daily_digest_sample](https://cloud.githubusercontent.com/assets/1550429/20801828/20a96136-b7b8-11e6-8848-5dafcfe9a4fe.png)
+
 
 ## Prerequisite
 
