@@ -25,7 +25,7 @@ task :deliver do
   }.select(&:valid?)
   print "\n"
 
-  basename = "dailydigest-#{Time.now.strftime('%Y%m%d%H%M')}"
+  basename = "dailydigest-#{Time.now.strftime('%Y%m%d')}"
   tempfile = basename + ".html"
   opffile = basename + ".opf"
   tocfile = basename + "toc.html"
@@ -41,11 +41,11 @@ task :deliver do
 
   print "\n"
   puts "📚  Rendering pages in HTML"
-  kindlegen = DailyDigest::Kindlegen.new
-  kindlegen.render(articles, tempfile)
+  mobigen = DailyDigest::Mobigen.new
+  mobigen.render(articles, tempfile)
 
   puts "📘  Converting rendered pages to Mobi with Kindlegen"
-  kindlegen.convert(opffile, mobi)
+  mobigen.convert(opffile, mobi)
 
 
   if ENV['CLEANUP']

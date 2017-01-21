@@ -7,6 +7,9 @@ GEM
     faraday_middleware (0.10.1)
       faraday (>= 0.7.4, < 1.0)
     hashie (3.4.6)
+    kindlegen (3.0.3)
+      rake
+      rubyzip
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
     mercury_parser (0.0.1)
@@ -22,12 +25,14 @@ GEM
     multi_xml (0.6.0)
     multipart-post (2.0.0)
     rake (12.0.0)
+    rubyzip (1.2.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   dotenv
+  kindlegen
   mail
   mercury_parser
   rake

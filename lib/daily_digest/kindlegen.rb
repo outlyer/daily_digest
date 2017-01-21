@@ -2,9 +2,10 @@ require 'erb'
 require 'fileutils'
 require 'digest'
 require 'uri'
+require 'kindlegen'
 
 module DailyDigest
-  class Kindlegen
+  class Mobigen
     include ERB::Util
 
     def x(str)
@@ -45,7 +46,12 @@ module DailyDigest
     end
 
     def convert(html, mobi)
-      system "kindlegen",'-dont_append_source',html, :out => :close
+      stdout, stderr, status = Kindlegen.run(html, '-o', mobi)
+      if status == 0
+        puts stdout
+      else
+        $stderr.puts stderr
+      end
     end
   end
 end

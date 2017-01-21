@@ -38,8 +38,8 @@ module DailyDigest
 </metadata>
 
 <manifest>  
-<item id="item2" media-type="text/x-oeb1-document" href="dailydigest-#{Time.now.strftime('%Y%m%d%H%M')}.html"></item>
-<item id="item1" media-type="text/x-oeb1-document" href="dailydigest-#{Time.now.strftime('%Y%m%d%H%M')}toc.html"></item> 
+<item id="item2" media-type="text/x-oeb1-document" href="dailydigest-#{Time.now.strftime('%Y%m%d')}.html"></item>
+<item id="item1" media-type="text/x-oeb1-document" href="dailydigest-#{Time.now.strftime('%Y%m%d')}toc.html"></item> 
 <item id="bookcover" media-type="image/jpeg" href="pocket-logo.jpg"></item>
  <item id="css" href="styles/style.css" media-type="text/css" />
     <item id="font_0" href="fonts/Lato-Light.ttf" media-type="application/x-font-ttf" />
@@ -59,8 +59,8 @@ module DailyDigest
 <itemref idref="item1"/>
 </spine>
 <guide>
-  <reference type="toc" title="Table of Contents" href="dailydigest-#{Time.now.strftime('%Y%m%d%H%M')}toc.html"></reference>
-  <reference type="text" title="start" href="dailydigest-#{Time.now.strftime('%Y%m%d%H%M')}.html#chapter01"></reference>
+  <reference type="toc" title="Table of Contents" href="dailydigest-#{Time.now.strftime('%Y%m%d%')}toc.html"></reference>
+  <reference type="text" title="start" href="dailydigest-#{Time.now.strftime('%Y%m%d')}.html#chapter01"></reference>
 </guide>
 
 </package>
