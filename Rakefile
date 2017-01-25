@@ -21,7 +21,7 @@ task :deliver do
     end
     padding = " " * (maxlength-14)
     print "     Parsing #{item.title}" + padding + "\r"
-    reader.get(item.url)
+    reader.get(item.url, item.item_id)
   }.select(&:valid?)
   print "\n"
 

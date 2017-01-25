@@ -13,19 +13,25 @@ module DailyDigest
       MercuryParser.api_key = token
     end
 
-    def get(url)
-      Article.new(MercuryParser.parse(url))
+    def get(url, item_id)
+      Article.new(MercuryParser.parse(url), item_id)
     end
 
     class Article
       attr_accessor :rendered_content
+      @@item_id = 0
 
-      def initialize(data)
+      def initialize(data, pocket_item_id)
         @data = data
+        @@item_id = pocket_item_id
       end
 
       def valid?
         title && content
+      end
+
+      def item_id
+        @@item_id
       end
 
       def title

@@ -38,6 +38,7 @@ module DailyDigest
           <div class="chapter-content">
           <% if article.content %><%= article.rendered_content %><% end %>
           </div>
+          <% if article.item_id %><a href="<%=h article.item_id %>"></a><% end %>
           <mbp:pagebreak />
           <% end %>
         </body>
