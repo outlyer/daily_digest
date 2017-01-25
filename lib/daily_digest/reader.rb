@@ -1,5 +1,7 @@
 require 'uri'
 require 'mercury_parser'
+require 'dotenv'
+require 'json'
 
 module DailyDigest
   class Reader
@@ -7,6 +9,7 @@ module DailyDigest
     include MercuryParser
 
     attr_reader :token
+    Dotenv.load
 
     def initialize(token)
       @token = token
@@ -32,6 +35,13 @@ module DailyDigest
 
       def item_id
         @@item_id
+      end
+
+      def archive_item
+        archive_command = JSON.generate({ :action =>'archive', :item_id => @@item_id })
+        archive_url = URI.escape("[#{archive_command}]").gsub("[","%5B").gsub("]","%5D").gsub(',','%2C').gsub(':','%3A')
+        archive_link = "https://getpocket.com/v3/send?actions=#{archive_url}&access_token=#{ENV['POCKET_ACCESS_TOKEN']}&consumer_key=#{ENV['POCKET_CONSUMER_KEY']}"
+        archive_link
       end
 
       def title

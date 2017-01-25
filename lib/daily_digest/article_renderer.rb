@@ -74,7 +74,7 @@ module DailyDigest
         image.combine_options do |b|
           b.resize '1072x>'
           b.colorspace 'Gray'
-          b.contrast
+          #b.contrast
         end
         image.format 'JPEG'
         image.write(dest)
