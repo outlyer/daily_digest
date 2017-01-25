@@ -78,7 +78,6 @@ module DailyDigest
         end
         image.format 'JPEG'
         image.write(dest)
-        print dest
       end
     end
 
