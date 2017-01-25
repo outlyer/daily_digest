@@ -1,7 +1,8 @@
 source 'https://rubygems.org'
 
-gem 'rake'
 gem 'dotenv'
+gem 'kindlegen'
 gem 'mail'
 gem 'mercury_parser'
-gem 'kindlegen'
+gem 'mini_magick'
+gem 'rake'

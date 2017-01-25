@@ -1,6 +1,7 @@
 module DailyDigest
 
   require 'open-uri'
+  require 'mini_magick'
 
   class ArticleRenderer
     def initialize(number = 10)
@@ -65,16 +66,24 @@ module DailyDigest
 
     def expand_image(url)
       cache = cache_path(url)
-      httpfetch(url.to_s,cache)
+      httpfetch(url.to_s,cache) # I guess we could remove this completely and just do it via mini_magick directly
      cache.sub(/\.[a-zA-Z]+$/, '_r.jpg').tap do |dest|
         imgsrc =  cache
         imgsrc.gsub!(/.gif/,'.gif[0]') # Make sure we don't expand the multiple frames of a gif, just grab the first frame
-        system 'convert', '-quiet','-quality', '60', '-colorspace','Gray','-auto-level','-resize', '1072x>', imgsrc, dest
+        image = MiniMagick::Image.open(imgsrc)
+        image.combine_options do |b|
+          b.resize '1072x>'
+          b.colorspace 'Gray'
+          b.contrast
+        end
+        image.format 'JPEG'
+        image.write(dest)
+        print dest
       end
     end
 
     def cache_path(url)
-      cache_dir + "/" + Digest::SHA1.hexdigest(url.to_s) + (File.extname(url.path) || '.png')
+      cache_dir + '/' + Digest::SHA1.hexdigest(url.to_s) + (File.extname(url.path) || '.png')
     end
 
     def cache_dir
