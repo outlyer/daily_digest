@@ -28,20 +28,15 @@ module DailyDigest
     end
 
     def workers
-      maxlength = 0
       (1..@number).to_a.map do |i|
         Thread.new do
           loop do
             break if @queue.empty?
             article = @queue.pop
-            if article.title.length > maxlength
-              maxlength = article.title.length
-            end
-            padding = " " * (maxlength-16)
-            print "     Rendering #{article.title}" + padding + "\r"
-            article.content.gsub!(/<img src="\/\//,'<img src="http:\/\/')
-            article.content.gsub!(/.jpg%20.*?\"/,'.jpg"')
-            article.content.gsub!(/.png%20.*?\"/,'.png"')
+            print "     Rendering #{article.title}\n"
+            article.content.gsub!(%r{/<img src="\/\//},'<img src="http:\/\/')
+            article.content.gsub!(%r{/.jpg%20.*?\"/},'.jpg"')
+            article.content.gsub!(%r{/.png%20.*?\"/},'.png"')
             if article.content
               article.rendered_content = render_article(article.content)
             end
@@ -52,6 +47,9 @@ module DailyDigest
 
     def render_article(content)
       expand_inline_images(content).gsub('<h2', '<h3').gsub('</h2>', '</h3>')
+                                   .gsub(%r{/\s*<picture.*?>.*?<\/picture>/x}, '')
+                                   .gsub(%r{/\s*<iframe.*?>.*?<\/iframe>/x}, '')
+                                   .gsub(%r{/\s*<figure.*?>.*?<\/figure/x}, '')
     end
 
     def expand_inline_images(content)
@@ -67,7 +65,7 @@ module DailyDigest
     def expand_image(url)
       cache = cache_path(url)
       httpfetch(url.to_s,cache) # I guess we could remove this completely and just do it via mini_magick directly
-     cache.sub(/\.[a-zA-Z]+$/, '_r.jpg').tap do |dest|
+      cache.sub(/\.[a-zA-Z]+$/, '_r.jpg').tap do |dest|
         imgsrc =  cache
         imgsrc.gsub!(/.gif/,'.gif[0]') # Make sure we don't expand the multiple frames of a gif, just grab the first frame
         image = MiniMagick::Image.open(imgsrc)

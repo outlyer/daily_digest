@@ -16,11 +16,7 @@ task :deliver do
   puts "📰  Parsing items with Mercury Web Parser"
   reader = DailyDigest::Reader.new(ENV['MERCURY_API_KEY'])
   articles = items.map { |item|
-    if item.title.length > maxlength
-      maxlength = item.title.length
-    end
-    padding = " " * (maxlength-14)
-    print "     Parsing #{item.title}" + padding + "\r"
+    print "     Parsing #{item.title}" + "\n"
     reader.get(item.url, item.item_id)
   }.select(&:valid?)
   print "\n"
