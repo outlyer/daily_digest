@@ -34,9 +34,10 @@ module DailyDigest
             break if @queue.empty?
             article = @queue.pop
             print "     Rendering #{article.title}\n"
-            article.content.gsub!(%r{/<img src="\/\//},'<img src="http:\/\/')
-            article.content.gsub!(%r{/.jpg%20.*?\"/},'.jpg"')
-            article.content.gsub!(%r{/.png%20.*?\"/},'.png"')
+            article.content.gsub!(%r{/<img.*?srcset=\"/x}, '<img src="')
+            article.content.gsub!(%r{/<img src="\/\//}, '<img src="http:\/\/')
+            article.content.gsub!(%r{/.jpg%20.*?\"/}, '.jpg"')
+            article.content.gsub!(%r{/.png%20.*?\"/}, '.png"')
             if article.content
               article.rendered_content = render_article(article.content)
             end

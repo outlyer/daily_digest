@@ -3,6 +3,7 @@ require 'fileutils'
 require 'digest'
 require 'uri'
 require 'kindlegen'
+require 'sanitize'
 
 module DailyDigest
   class Mobigen
@@ -15,6 +16,16 @@ module DailyDigest
     def render(articles, path)
       ArticleRenderer.new.render(articles)
       output = ERB.new(template).result(binding)
+      output = Sanitize.document(output,
+        :elements => ['xml','a', 'address', 'article', 'aside', 'b', 'blockquote', 'body', 'br', 'caption', 'center', 'cite', 'code', 'col', 'dd', 'del', 'dfn', 'div', 'dl', 'dt', 'em', 'figcaption', 'figure', 'footer', 'h1', 'h2', '     h3', 'h4', 'h5', 'h6', 'head', 'header', 'hgroup', 'hr', 'html', 'i', 'img', 'ins', 'kbd', 'li', 'link', 'mark', 'menu', 'ol', 'output', 'p', 'pre', 'q', 'rp', 'rt', 'samp', 'section', 'small', 'source', 'span', 'strong', '   style', 'strike', 'sub', 'sup', 'table', 'tbody', 'td', 'tfoot', 'th', 'thead', 'time', 'title', 'tr', 'u', 'ul', 'var', 'wbr', 'nav', 'summary'],
+        :attributes => {
+          'a'    => ['href', 'title'],
+          'span' => ['class'],
+          'img'  => ['alt', 'src', 'title']
+        },
+        :protocols => {
+          'a' => {'href' => ['http', 'https', 'mailto']}
+        })
       File.open(path, 'w') {|f| f.write(output) }
     end
 
